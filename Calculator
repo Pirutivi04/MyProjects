@@ -1,0 +1,44 @@
+def add(num_1, nxt_num):
+    return num_1 + nxt_num
+
+def sub(num_1, nxt_num):
+    return num_1 - nxt_num
+
+def mul(num_1, nxt_num):
+    return num_1 * nxt_num
+
+def div(num_1, nxt_num):
+    return num_1 / nxt_num
+
+def calculator():
+    while True: 
+        num_1 = int(input("What's the first number?: "))
+        operator = ["+", "-", "*", "/"]
+        for char in operator:
+            print(char)
+
+        end_of_game = False
+        while not end_of_game:
+            operator_choice = input("Pick an operator: ")
+            nxt_num = int(input("What's the next number?: "))
+
+            operation = {"+": add, "-": sub, "*": mul, "/": div}
+            function = operation.get(operator_choice)
+
+            if function:  
+                answer = function(num_1, nxt_num)
+                print(f"{num_1} {operator_choice} {nxt_num} = {answer}")
+            else:
+                print("Invalid operator, please try again.")
+                continue
+
+            opinion = input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation: ")
+            if opinion == 'y':
+                num_1 = answer
+            else:
+                end_of_game = True
+
+        if input("Type 'exit' to quit, or press enter to start a new calculation: ") == 'exit':
+            break
+
+calculator()
